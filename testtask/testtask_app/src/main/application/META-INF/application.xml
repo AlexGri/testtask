@@ -10,5 +10,5 @@
       <context-root>/testtask_web</context-root>
     </web>
   </module>
-  <library-directory>lib</library-directory>
+  <library-directory>/lib</library-directory>
 </application>
