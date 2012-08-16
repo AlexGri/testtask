@@ -1,0 +1,24 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+	version="2.1">
+	
+  <display-name>advisor</display-name>
+  <enterprise-beans>
+  	<session>
+  		<display-name>AdviceBean</display-name>
+  		<ejb-name>AdviceBean</ejb-name>
+  		<home>headfirst.AdviceHome</home>
+  		<remote>headfirst.Advice</remote>
+  		<ejb-class>headfirst.AdviceBean</ejb-class>  		
+  		<session-type>Stateless</session-type>
+  		<transaction-type>Bean</transaction-type>
+  		<security-identity>
+  			<description></description>
+  			<use-caller-identity/>
+  		</security-identity>  		
+  	</session>
+  </enterprise-beans>
+</ejb-jar> -->
