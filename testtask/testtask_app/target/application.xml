@@ -2,11 +2,11 @@
 <application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
   <display-name>testtask_app</display-name>
   <module>
-    <ejb>classes</ejb>
+    <ejb>testtask_core.jar</ejb>
   </module>
   <module>
     <web>
-      <web-uri>classes</web-uri>
+      <web-uri>testtask_web.war</web-uri>
       <context-root>/testtask_web</context-root>
     </web>
   </module>
