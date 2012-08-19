@@ -41,7 +41,9 @@ public class EmployeeControllerBean implements SessionBean {
 		} catch (SQLException e) {
 			error("Error getting Employee list", e);
 		} finally {
-			closeConnection(con, stmt, rs);
+			closeConnection(con);
+			closeConnection(stmt);
+			closeConnection(rs);
 		}
 		return null;
 	}
@@ -107,5 +109,14 @@ public class EmployeeControllerBean implements SessionBean {
             catch (SQLException e) {}
         }
     }
+	
+	private void closeConnection (AutoCloseable closeable) {
+		if (closeable != null) {
+            try {
+            	closeable.close();
+            }
+            catch (Exception e) {}
+        }
+	}
 
 }
