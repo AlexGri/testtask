@@ -15,6 +15,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang.StringUtils;
+
 public class EmployeeControllerBean implements SessionBean {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +30,32 @@ public class EmployeeControllerBean implements SessionBean {
 
 		try {
 			con = dataSource.getConnection();
-			stmt = con.prepareStatement("SELECT employee FROM Employee employee");
+			stmt = con.prepareStatement("SELECT lastname FROM employee employee");
+
+			rs = stmt.executeQuery();
+
+			Collection<Object> col = new TreeSet<Object>();
+			while (rs.next()) {
+				col.add(rs.getString(1));
+			}
+ 
+			return col;
+		} catch (SQLException e) {
+			error("Error getting Employee list", e);
+		} finally {
+			closeConnection(con, stmt, rs);
+		}
+		return null;
+	}
+	
+	public Collection<Object> getPositionList() {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			stmt = con.prepareStatement("SELECT position_name FROM position position");
 
 			rs = stmt.executeQuery();
 
@@ -39,22 +66,50 @@ public class EmployeeControllerBean implements SessionBean {
 
 			return col;
 		} catch (SQLException e) {
-			error("Error getting Employee list", e);
+			error("Error getting Position list", e);
 		} finally {
-			closeConnection(con);
-			closeConnection(stmt);
-			closeConnection(rs);
+			closeConnection(con, stmt, rs);
 		}
 		return null;
 	}
 	
-	/*public Collection<Object> getPositionList() {
-		
-	}
-	
 	public Collection<Object> findAllOccurences(String value) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
-	}*/
+		String searchValue = StringUtils.isBlank(value) ? "%" : "%"+value.trim() +"%";
+		
+		try {
+			con = dataSource.getConnection();
+			stmt = con.prepareStatement("SELECT empl.lastname FROM employee as empl " +
+					" left join position pos on pos.id = empl.position " +
+					" where empl.firstname like ?" +
+					" or empl.lastname like ? " + 
+					" or empl.middlename like ? " + 
+					" or pos.position_name like ? "
+					);
+			
+			stmt.setString(1, searchValue);
+			stmt.setString(2, searchValue);
+			stmt.setString(3, searchValue);
+			stmt.setString(4, searchValue);
+
+			rs = stmt.executeQuery();
+
+			Collection<Object> col = new TreeSet<Object>();
+			while (rs.next()) {
+				col.add(rs.getString(1));
+			}
+
+			return col;
+		} catch (SQLException e) {
+			error("Error searching personnel department data", e);
+		} finally {
+			closeConnection(con, stmt, rs);
+		}
+		return null;
+	}
 
 	@Override
 	public void ejbActivate() throws EJBException, RemoteException {}
@@ -109,14 +164,4 @@ public class EmployeeControllerBean implements SessionBean {
             catch (SQLException e) {}
         }
     }
-	
-	private void closeConnection (AutoCloseable closeable) {
-		if (closeable != null) {
-            try {
-            	closeable.close();
-            }
-            catch (Exception e) {}
-        }
-	}
-
 }

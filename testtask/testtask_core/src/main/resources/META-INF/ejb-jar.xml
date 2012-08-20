@@ -7,6 +7,19 @@
 	
   <display-name>PersonnelDepartment</display-name>
   <enterprise-beans>
+  	<session>
+  	<display-name>EmployeeController</display-name>
+  	<ejb-name>EmployeeController</ejb-name>
+  		<home>org.nc.core.business.EmployeeControllerHome</home>
+  		<remote>org.nc.core.business.EmployeeController</remote>
+  		<ejb-class>org.nc.core.business.EmployeeControllerBean</ejb-class>  		
+  		<session-type>Stateless</session-type>
+  		<transaction-type>Bean</transaction-type>
+  		<security-identity>
+  			<description></description>
+  			<use-caller-identity/>
+  		</security-identity>  		
+  	</session>
   	<!-- <session>
   		<display-name>AdviceBean</display-name>
   		<ejb-name>AdviceBean</ejb-name>
@@ -20,13 +33,14 @@
   			<use-caller-identity/>
   		</security-identity>  		
   	</session> -->
-  	<entity>
+  	<!-- <entity>
   		<display-name>Employee</display-name>
   		<ejb-name>Employee</ejb-name>
   		<home>org.nc.core.entity.interfaces.EmployeeHome</home>
   		<remote>org.nc.core.entity.interfaces.Employee</remote>
   		<ejb-class>org.nc.core.entity.EmployeeBean</ejb-class>
   		<persistence-type>Container</persistence-type>
+  		<prim-key-class>java.lang.Long</prim-key-class>
   		<primkey-field>id</primkey-field>
   		<cmp-version>2.x</cmp-version>
   		<cmp-field>
@@ -48,6 +62,6 @@
   			<field-name>salary</field-name>
   		</cmp-field>
   		
-  	</entity>
+  	</entity> -->
   </enterprise-beans>
 </ejb-jar>
