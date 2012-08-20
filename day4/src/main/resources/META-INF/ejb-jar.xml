@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+	version="2.1">
+  <display-name>Simple</display-name>
+  <enterprise-beans>
+    <session>
+      <display-name>Agency</display-name>
+      <ejb-name>Agency</ejb-name>
+      <home>agency.AgencyHome</home>
+      <remote>agency.Agency</remote>
+      <ejb-class>agency.AgencyBean</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+        <env-entry-name>AgencyName</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>J2EE in 21 Days Job Agency</env-entry-value>
+      </env-entry>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+      <!--  <resource-ref/>
+        <res-ref-name>jdbc/Agency</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref> -->
+    </session>
+  </enterprise-beans>  
+</ejb-jar>
