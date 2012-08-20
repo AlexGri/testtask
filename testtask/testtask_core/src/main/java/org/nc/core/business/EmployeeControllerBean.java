@@ -1,6 +1,5 @@
 package org.nc.core.business;
 
-import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.TreeSet;
 
+import javax.ejb.CreateException;
 import javax.ejb.EJBException;
 import javax.ejb.SessionBean;
 import javax.ejb.SessionContext;
@@ -112,17 +112,17 @@ public class EmployeeControllerBean implements SessionBean {
 	}
 
 	@Override
-	public void ejbActivate() throws EJBException, RemoteException {}
+	public void ejbActivate() {}
 
 	@Override
-	public void ejbPassivate() throws EJBException, RemoteException {}
+	public void ejbPassivate() {}
 
 	@Override
-	public void ejbRemove() throws EJBException, RemoteException {
+	public void ejbRemove() {
 		this.dataSource = null;
 	}
 	
-	public void ejbCreate() throws EJBException, RemoteException {
+	public void ejbCreate() throws CreateException {
 		try {
 	        InitialContext ic = new InitialContext();
 	        dataSource = (DataSource)ic.lookup("java:PD-DS");
@@ -133,8 +133,7 @@ public class EmployeeControllerBean implements SessionBean {
 	}
 
 	@Override
-	public void setSessionContext(SessionContext arg0) throws EJBException,
-			RemoteException {
+	public void setSessionContext(SessionContext arg0) {
 		this.sessionContext = arg0;		
 	}
 	
