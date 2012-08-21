@@ -5,11 +5,14 @@ import javax.ejb.*;
 import javax.naming.*;
 import java.rmi.*;
 import javax.rmi.*;
+
+import org.nc.core.entity.*;
+
 import java.util.*;
 
 public class SimpleClient 
 {
-	private static String myJndi = "EmployeeController";
+	private static String myJndi = "ejb/Position";
 
     public static void main(String[] args) {
 		if (args.length == 1)
@@ -26,14 +29,10 @@ public class SimpleClient
 	        InitialContext ic = new InitialContext(env);
 	        Object lookup = ic.lookup(myJndi);
 	        
-	        EmployeeControllerHome home = (EmployeeControllerHome)PortableRemoteObject.narrow(lookup, EmployeeControllerHome.class);
+	        PositionHome home = (PositionHome)PortableRemoteObject.narrow(lookup, PositionHome.class);
 	        
-	        EmployeeController employeeController = home.create();
-
-	        System.out.println("Employee List: "+employeeController.getEmployeeList());
-	        System.out.println("Position List: "+employeeController.getPositionList());
-	        System.out.println("find method : "+employeeController.findAllOccurences("Директор"));
-
+	        Position position = home.create("test position");
+	        position.setPositionName("test position2");
     	}
     	catch (NamingException ex) {
  	    	System.err.println(ex);
@@ -42,9 +41,6 @@ public class SimpleClient
  	    	System.err.println(ex);
     	}
     	catch (CreateException ex) {
- 	    	System.err.println(ex);
-    	}
-    	catch (RemoteException ex) {
  	    	System.err.println(ex);
     	}
     }
