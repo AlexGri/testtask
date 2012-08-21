@@ -16,6 +16,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.apache.commons.lang.StringUtils;
+import org.nc.core.utils.CommonUtils;
 
 public class EmployeeControllerBean implements SessionBean {
 	private static final long serialVersionUID = 1L;
@@ -41,9 +42,9 @@ public class EmployeeControllerBean implements SessionBean {
  
 			return col;
 		} catch (SQLException e) {
-			error("Error getting Employee list", e);
+			CommonUtils.error("Error getting Employee list", e);
 		} finally {
-			closeConnection(con, stmt, rs);
+			CommonUtils.closeConnection(con, stmt, rs);
 		}
 		return null;
 	}
@@ -66,9 +67,9 @@ public class EmployeeControllerBean implements SessionBean {
 
 			return col;
 		} catch (SQLException e) {
-			error("Error getting Position list", e);
+			CommonUtils.error("Error getting Position list", e);
 		} finally {
-			closeConnection(con, stmt, rs);
+			CommonUtils.closeConnection(con, stmt, rs);
 		}
 		return null;
 	}
@@ -104,9 +105,9 @@ public class EmployeeControllerBean implements SessionBean {
 
 			return col;
 		} catch (SQLException e) {
-			error("Error searching personnel department data", e);
+			CommonUtils.error("Error searching personnel department data", e);
 		} finally {
-			closeConnection(con, stmt, rs);
+			CommonUtils.closeConnection(con, stmt, rs);
 		}
 		return null;
 	}
@@ -125,10 +126,10 @@ public class EmployeeControllerBean implements SessionBean {
 	public void ejbCreate() throws CreateException {
 		try {
 	        InitialContext ic = new InitialContext();
-	        dataSource = (DataSource)ic.lookup("java:PD-DS");
+	        dataSource = (DataSource)ic.lookup("java:comp/env/jdbc/PersonnelDepartmentDS");
         }
         catch (NamingException ex) {
-            error("Error connecting to PD:",ex);
+            CommonUtils.error("Error connecting to PD:",ex);
         }
 	}
 
@@ -136,31 +137,4 @@ public class EmployeeControllerBean implements SessionBean {
 	public void setSessionContext(SessionContext arg0) {
 		this.sessionContext = arg0;		
 	}
-	
-	private void error (String msg, Exception ex) {
-		String s = "EmployeeControllerBean: "+msg + "\n" + ex;
-        System.out.println(s);
-        throw new EJBException(s,ex);
-	}
-	
-	private void closeConnection (Connection con, PreparedStatement stmt, ResultSet rslt) {
-        if (rslt != null) {
-            try {
-                rslt.close();
-            }
-            catch (SQLException e) {}
-        }
-        if (stmt != null) {
-            try {
-                stmt.close();
-            }
-            catch (SQLException e) {}
-        }
-        if (con != null) {
-            try {
-                con.close();
-            }
-            catch (SQLException e) {}
-        }
-    }
 }
