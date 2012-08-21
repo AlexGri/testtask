@@ -4,6 +4,7 @@
 		<artifactId>day5all</artifactId>
 		<groupId>sams</groupId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../day5all</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 

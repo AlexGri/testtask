@@ -9,7 +9,7 @@ import java.util.*;
 
 public class SimpleClient 
 {
-	private static String agencyJNDI = "Agency";
+	private static String agencyJNDI = "ejb/Agency";
 
     public static void main(String[] args) {
 		if (args.length == 1)
