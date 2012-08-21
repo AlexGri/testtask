@@ -17,11 +17,15 @@ public interface Agency extends EJBObject
 	void deleteCustomer (String login) throws RemoteException, NotFoundException;
 
 	Collection getLocations() throws RemoteException;
-	void addLocation(String name) throws RemoteException, DuplicateException;
+	String getLocationDescription(String name) throws RemoteException, NotFoundException;
+	void addLocation(String name, String description) throws RemoteException, DuplicateException;
+	void updateLocation(String name, String description) throws RemoteException, NotFoundException;
 	void removeLocation(String code) throws RemoteException, NotFoundException;
 	
 	Collection getSkills() throws RemoteException;
-	void addSkill(String name) throws RemoteException, DuplicateException;
+	String getSkillDescription(String name) throws RemoteException, NotFoundException;
+	void addSkill(String name, String description) throws RemoteException, DuplicateException;
+	void updateSkill(String name, String description) throws RemoteException, NotFoundException;
 	void removeSkill(String name) throws RemoteException, NotFoundException;
 
 	List select(String table) throws RemoteException;
