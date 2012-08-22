@@ -240,8 +240,7 @@ public class PositionBean implements EntityBean {
 		this.dataSource = null;
 	}
 
-	@Override
-	public String toString() {
+	public String stringValue() {
 		return "PositionBean [positionName=" + positionName + "]";
 	}
 }

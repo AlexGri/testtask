@@ -32,7 +32,8 @@ public class SimpleClient
 	        EmployeeControllerHome home = (EmployeeControllerHome)PortableRemoteObject.narrow(lookup, EmployeeControllerHome.class);
 	        
 	        EmployeeController employeeController = home.create();
-	        employeeController.updatePosition("test position", "ntp");
+	        System.out.println("position list \n " + employeeController.getPositionList());
+	        System.out.println("\n\nemployee list \n " + employeeController.getEmployeeList());
     	}
     	catch (NamingException ex) {
  	    	System.err.println(ex);

@@ -53,7 +53,7 @@ public class EmployeeControllerBean implements SessionBean {
 			Collection<Employee> employees = employeeHome.findAll();
 			Collection<String> result = new ArrayList<String>(employees.size());
 			for (Employee employee : employees) {
-				result.add(employee.toString());
+				result.add(employee.stringValue());
 			}
 			return result;
 		} catch (FinderException e) {
@@ -68,7 +68,7 @@ public class EmployeeControllerBean implements SessionBean {
 			Collection<Position> positions = positionHome.findAll();
 			Collection<String> result = new ArrayList<String>(positions.size());
 			for (Position position : positions)
-				result.add(position.toString());
+				result.add(position.stringValue());
 			return result;
 		} catch (FinderException e) {
 			CommonUtils.error("error occured during getting position list", e);
@@ -82,7 +82,7 @@ public class EmployeeControllerBean implements SessionBean {
 			Collection<Employee> employees = employeeHome.findByPartOfNameOrPosition(value);
 			Collection<String> result = new ArrayList<String>(employees.size());
 			for (Employee employee : employees) {
-				result.add(employee.toString());
+				result.add(employee.stringValue());
 			}
 			return result;
 		} catch (FinderException e1) {

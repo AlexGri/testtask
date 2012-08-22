@@ -20,5 +20,13 @@
 				<jndi-name>java:PD-DS</jndi-name>
 			</resource-ref>
 		</entity>
+		<entity>
+			<ejb-name>EmployeeBean</ejb-name>
+			<local-jndi-name>ejb/Employee</local-jndi-name>			
+			<resource-ref>
+				<res-ref-name>jdbc/PersonnelDepartmentDS</res-ref-name>
+				<jndi-name>java:PD-DS</jndi-name>
+			</resource-ref>
+		</entity>
 	</enterprise-beans>
 </jboss>

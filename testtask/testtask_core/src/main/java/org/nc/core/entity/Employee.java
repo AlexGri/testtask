@@ -29,5 +29,5 @@ public interface Employee extends EJBLocalObject {
 
 	public Long getId();
 	
-	public String toString();
+	public String stringValue();
 }

@@ -358,11 +358,10 @@ public class EmployeeBean implements EntityBean {
 		this.positionHome = null;
 	}
 
-	@Override
-	public String toString() {
+	public String stringValue() {
 		return "EmployeeBean [firstname=" + firstname + ", lastname="
 				+ lastname + ", middlename=" + middlename + ", phones="
-				+ phones + ", salary=" + salary + ", position=" + position
+				+ phones + ", salary=" + salary + ", position=" + position.stringValue()
 				+ "]";
 	}
 }
