@@ -11,4 +11,8 @@ public interface EmployeeController extends EJBObject {
 	public Collection<Object> getPositionList() throws RemoteException;
 	
 	public Collection<Object> findAllOccurences(String value) throws RemoteException;
+	
+	public void updatePosition(String oldName, String newName) throws RemoteException;
+	
+	public void createPosition(String name) throws RemoteException;
 }

@@ -14,6 +14,20 @@
 			<ejb-class>org.nc.core.business.EmployeeControllerBean</ejb-class>
 			<session-type>Stateless</session-type>
 			<transaction-type>Bean</transaction-type>
+			<ejb-local-ref>
+				<ejb-ref-name>ejb/Position</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>org.nc.core.entity.PositionHome</local-home>
+				<local>org.nc.core.entity.Position</local>
+				<ejb-link>testtask_core.jar#PositionBean</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref>
+				<ejb-ref-name>ejb/Employee</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>org.nc.core.entity.EmployeeHome</local-home>
+				<local>org.nc.core.entity.Employee</local>
+				<ejb-link>testtask_core.jar#EmployeeBean</ejb-link>
+			</ejb-local-ref>
 			<resource-ref>
 				<res-ref-name>jdbc/PersonnelDepartmentDS</res-ref-name>
 				<res-type>javax.sql.DataSource</res-type>
@@ -41,20 +55,29 @@
 				<res-sharing-scope>Shareable</res-sharing-scope>
 			</resource-ref>
 		</entity>
-		<!-- <session> <display-name>AdviceBean</display-name> <ejb-name>AdviceBean</ejb-name> 
-			<home>headfirst.AdviceHome</home> <remote>headfirst.Advice</remote> <ejb-class>headfirst.AdviceBean</ejb-class> 
-			<session-type>Stateless</session-type> <transaction-type>Bean</transaction-type> 
-			<security-identity> <description></description> <use-caller-identity/> </security-identity> 
-			</session> -->
-		<!-- <entity> <display-name>Employee</display-name> <ejb-name>Employee</ejb-name> 
-			<home>org.nc.core.entity.interfaces.EmployeeHome</home> <remote>org.nc.core.entity.interfaces.Employee</remote> 
-			<ejb-class>org.nc.core.entity.EmployeeBean</ejb-class> <persistence-type>Container</persistence-type> 
-			<prim-key-class>java.lang.Long</prim-key-class> <primkey-field>id</primkey-field> 
-			<cmp-version>2.x</cmp-version> <cmp-field> <field-name>id</field-name> </cmp-field> 
-			<cmp-field> <field-name>firstname</field-name> </cmp-field> <cmp-field> <field-name>lastname</field-name> 
-			</cmp-field> <cmp-field> <field-name>middlename</field-name> </cmp-field> 
-			<cmp-field> <field-name>phones</field-name> </cmp-field> <cmp-field> <field-name>salary</field-name> 
-			</cmp-field> </entity> -->
+		<entity>
+			<display-name>EmployeeBean</display-name>
+			<ejb-name>EmployeeBean</ejb-name>
+			<local-home>org.nc.core.entity.EmployeeHome</local-home>
+			<local>org.nc.core.entity.Employee</local>
+			<ejb-class>org.nc.core.entity.EmployeeBean</ejb-class>
+			<persistence-type>Bean</persistence-type>
+			<prim-key-class>java.lang.Long</prim-key-class>
+			<reentrant>false</reentrant>
+			<ejb-local-ref>
+				<ejb-ref-name>ejb/Position</ejb-ref-name>
+				<ejb-ref-type>Entity</ejb-ref-type>
+				<local-home>org.nc.core.entity.PositionHome</local-home>
+				<local>org.nc.core.entity.Position</local>
+				<ejb-link>testtask_core.jar#PositionBean</ejb-link>
+			</ejb-local-ref>
+			<resource-ref>
+				<res-ref-name>jdbc/PersonnelDepartmentDS</res-ref-name>
+				<res-type>javax.sql.DataSource</res-type>
+				<res-auth>Container</res-auth>
+				<res-sharing-scope>Shareable</res-sharing-scope>
+			</resource-ref>
+		</entity>
 	</enterprise-beans>
 	<assembly-descriptor>
 		<container-transaction>

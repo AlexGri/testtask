@@ -25,6 +25,9 @@ USE `pd`;
 DROP TABLE IF EXISTS `position`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+DROP TABLE IF EXISTS `employee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `position` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `position_name` varchar(45) NOT NULL,
@@ -39,7 +42,7 @@ CREATE TABLE `position` (
 
 LOCK TABLES `position` WRITE;
 /*!40000 ALTER TABLE `position` DISABLE KEYS */;
-INSERT INTO `position` VALUES (5,'Грузчик'),(1,'Директор филиала'),(3,'Продавец'),(2,'Старший менеджер'),(4,'Товаровед');
+INSERT INTO `position` VALUES (5,'Р“СЂСѓР·С‡РёРє'),(1,'Р”РёСЂРµРєС‚РѕСЂ С„РёР»РёР°Р»Р°'),(3,'РџСЂРѕРґР°РІРµС†'),(2,'РЎС‚Р°СЂС€РёР№ РјРµРЅРµРґР¶РµСЂ'),(4,'РўРѕРІР°СЂРѕРІРµРґ');
 /*!40000 ALTER TABLE `position` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,9 +50,7 @@ UNLOCK TABLES;
 -- Table structure for table `employee`
 --
 
-DROP TABLE IF EXISTS `employee`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `employee` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) NOT NULL,
@@ -70,7 +71,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (6,'Иван','Иванов','Иванович',3,15000),(7,'Петр','Петров','Петрович',3,20000),(8,'Николай','Сидоров','Евгеньевич',4,23000),(9,'Виктор','Никоноров','Викторович',1,48000);
+INSERT INTO `employee` VALUES (6,'РРІР°РЅ','РРІР°РЅРѕРІ','РРІР°РЅРѕРІРёС‡',3,15000),(7,'РџРµС‚СЂ','РџРµС‚СЂРѕРІ','РџРµС‚СЂРѕРІРёС‡',3,20000),(8,'РќРёРєРѕР»Р°Р№','РЎРёРґРѕСЂРѕРІ','Р•РІРіРµРЅСЊРµРІРёС‡',4,23000),(9,'Р’РёРєС‚РѕСЂ','РќРёРєРѕРЅРѕСЂРѕРІ','Р’РёРєС‚РѕСЂРѕРІРёС‡',1,48000);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 

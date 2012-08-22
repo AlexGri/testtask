@@ -12,7 +12,7 @@ import java.util.*;
 
 public class SimpleClient 
 {
-	private static String myJndi = "ejb/Position";
+	private static String myJndi = "ejb/EmployeeController";
 
     public static void main(String[] args) {
 		if (args.length == 1)
@@ -29,10 +29,10 @@ public class SimpleClient
 	        InitialContext ic = new InitialContext(env);
 	        Object lookup = ic.lookup(myJndi);
 	        
-	        PositionHome home = (PositionHome)PortableRemoteObject.narrow(lookup, PositionHome.class);
+	        EmployeeControllerHome home = (EmployeeControllerHome)PortableRemoteObject.narrow(lookup, EmployeeControllerHome.class);
 	        
-	        Position position = home.create("test position");
-	        position.setPositionName("test position2");
+	        EmployeeController employeeController = home.create();
+	        employeeController.updatePosition("test position", "ntp");
     	}
     	catch (NamingException ex) {
  	    	System.err.println(ex);
@@ -41,6 +41,9 @@ public class SimpleClient
  	    	System.err.println(ex);
     	}
     	catch (CreateException ex) {
+ 	    	System.err.println(ex);
+    	}
+    	catch (RemoteException ex) {
  	    	System.err.println(ex);
     	}
     }

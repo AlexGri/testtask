@@ -6,4 +6,7 @@ public interface Position extends EJBLocalObject {
 	public String getPositionName();
 
 	public void setPositionName(String positionName);
+	
+	@Override
+	public String toString();
 }

@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.TreeSet;
 
 import javax.ejb.CreateException;
 import javax.ejb.EntityBean;
@@ -39,8 +42,7 @@ public class PositionBean implements EntityBean {
 		try {
 			con = dataSource.getConnection();
 			stmt = con.prepareStatement(
-			"INSERT INTO position (position_name) VALUES (?)");
-
+			"INSERT INTO position (position_name) VALUES (?)", java.sql.Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, positionName);
 			stmt.executeUpdate();
 			resultSet = stmt.getGeneratedKeys();
@@ -86,6 +88,55 @@ public class PositionBean implements EntityBean {
 			CommonUtils.closeConnection(con, stmt, rs);
 		}
 		return null;
+	}
+	
+	public Long ejbFindByName(String name) throws FinderException {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			stmt = con.prepareStatement("SELECT id FROM position WHERE position_name = ?");
+
+			stmt.setString(1, name);
+			rs = stmt.executeQuery();
+
+			if (!rs.next()) {
+				throw new ObjectNotFoundException("Unknown position");
+			}
+			return rs.getLong(1);
+		}
+		catch (SQLException e) {
+			CommonUtils.error("Error in ejbFindByName for "+name,e);
+		}
+		finally {
+			CommonUtils.closeConnection(con, stmt, rs);
+		}
+		return null;
+	}
+	
+	public Collection<Long> ejbFindAll() throws FinderException {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			stmt = con.prepareStatement("SELECT id FROM position");
+			rs = stmt.executeQuery();
+
+			Collection<Long> col = new TreeSet<Long>();
+			while (rs.next()) {
+				col.add(rs.getLong(1));
+			}
+			return col;
+		}
+		catch (SQLException e) {
+			CommonUtils.error("Error in ejbFindAll ",e);
+		}
+		finally {
+			CommonUtils.closeConnection(con, stmt, rs);
+		}
+		return Collections.emptySet();
 	}
 
 	@Override
@@ -189,4 +240,8 @@ public class PositionBean implements EntityBean {
 		this.dataSource = null;
 	}
 
+	@Override
+	public String toString() {
+		return "PositionBean [positionName=" + positionName + "]";
+	}
 }

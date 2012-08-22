@@ -14,7 +14,7 @@
 		</session>
 		<entity>
 			<ejb-name>PositionBean</ejb-name>
-			<jndi-name>ejb/Position</jndi-name>
+			<local-jndi-name>ejb/Position</local-jndi-name>			
 			<resource-ref>
 				<res-ref-name>jdbc/PersonnelDepartmentDS</res-ref-name>
 				<jndi-name>java:PD-DS</jndi-name>
