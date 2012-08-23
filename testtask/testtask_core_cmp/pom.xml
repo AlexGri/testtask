@@ -8,10 +8,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>nc.test.task</groupId>
-	<artifactId>testtask_core</artifactId>
+	<artifactId>testtask_core_cmp</artifactId>
 	<packaging>ejb</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>testtask_core Java EE 6 EJB</name>
+	<name>testtask_core_cmp Java EE 6 EJB</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
@@ -66,7 +66,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>testtask_core</finalName>
+		<finalName>testtask_core_cmp</finalName>
 	</build>
 	<profiles>
 		<profile>

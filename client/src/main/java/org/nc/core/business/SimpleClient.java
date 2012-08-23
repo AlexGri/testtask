@@ -32,8 +32,12 @@ public class SimpleClient
 	        EmployeeControllerHome home = (EmployeeControllerHome)PortableRemoteObject.narrow(lookup, EmployeeControllerHome.class);
 	        
 	        EmployeeController employeeController = home.create();
-	        System.out.println("position list \n " + employeeController.getPositionList());
-	        System.out.println("\n\nemployee list \n " + employeeController.getEmployeeList());
+	        System.out.println("position list: ");
+	        print(employeeController.getPositionList());
+	        System.out.println("\n\nemployee list:");
+	        print(employeeController.getEmployeeList());
+	        System.out.println("\n\nfound list list:");
+	        print(employeeController.findAllOccurences("ров"));
     	}
     	catch (NamingException ex) {
  	    	System.err.println(ex);
@@ -46,6 +50,12 @@ public class SimpleClient
     	}
     	catch (RemoteException ex) {
  	    	System.err.println(ex);
+    	}
+    }
+    
+    public static void print(Collection<String> strings) {
+    	for (String string : strings) {    		
+    		System.out.println("\n\t" + string);
     	}
     }
 

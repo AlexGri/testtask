@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+  <!DOCTYPE jbosscmp-jdbc PUBLIC
+      "-//JBoss//DTD JBOSSCMP-JDBC 4.2//EN"
+      "http://www.jboss.org/j2ee/dtd/jbosscmp-jdbc_4_2.dtd">
+<jbosscmp-jdbc>
+	<defaults>
+		<datasource>java:PD-DS</datasource>
+		<datasource-mapping>mySQL</datasource-mapping>
+	</defaults>
+	<enterprise-beans>
+		<entity>
+			<ejb-name>PositionBean</ejb-name>
+			<table-name>position</table-name>
+			<cmp-field>
+				<field-name>positionName</field-name>
+				<column-name>position_name</column-name>
+			</cmp-field>
+		</entity>
+		<entity>
+			<ejb-name>EmployeeBean</ejb-name>
+			<table-name>employee</table-name>
+		</entity>
+	</enterprise-beans>
+</jbosscmp-jdbc>

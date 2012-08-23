@@ -3,8 +3,8 @@
 	<name>testtask_app</name>
 	<comment></comment>
 	<projects>
-		<project>testtask_core</project>
 		<project>testtask_web</project>
+		<project>testtask_core_cmp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

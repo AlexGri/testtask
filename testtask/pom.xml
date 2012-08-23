@@ -7,9 +7,10 @@
 	<packaging>pom</packaging>
 	<name>testtask</name>
 	<modules>
-		<module>testtask_core</module>
+		<!-- <module>testtask_core</module> -->
+		<module>testtask_core_cmp</module>
 		<module>testtask_web</module>
-		<module>testtask_app</module>
+		<module>testtask_app</module>		
 	</modules>
 	<dependencies>
 		<dependency>

@@ -36,18 +36,25 @@
     <finalName>testtask_app</finalName>
   </build>
   <dependencies>
-  	<dependency>
+  	<!-- <dependency>
   		<groupId>nc.test.task</groupId>
   		<artifactId>testtask_core</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   		<type>ejb</type>
   		<scope>compile</scope>
-  	</dependency>
+  	</dependency> -->
   	<dependency>
   		<groupId>nc.test.task</groupId>
   		<artifactId>testtask_web</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   		<type>war</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>nc.test.task</groupId>
+  		<artifactId>testtask_core_cmp</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<type>ejb</type>
   		<scope>compile</scope>
   	</dependency>
   </dependencies>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE jboss PUBLIC
+      "-//JBoss//DTD JBOSS 4.2//EN"
+      "http://www.jboss.org/j2ee/dtd/jboss_4_2.dtd">
+<jboss>
+	<enterprise-beans>
+		<session>
+			<ejb-name>EmployeeControllerBean</ejb-name>
+			<jndi-name>ejb/EmployeeController</jndi-name>
+			<resource-ref>
+				<res-ref-name>jdbc/PersonnelDepartmentDS</res-ref-name>
+				<jndi-name>java:PD-DS</jndi-name>
+			</resource-ref>
+		</session>
+		<entity>
+			<ejb-name>PositionBean</ejb-name>
+			<local-jndi-name>ejb/Position</local-jndi-name>
+		</entity>
+		<entity>
+			<ejb-name>EmployeeBean</ejb-name>
+			<local-jndi-name>ejb/Employee</local-jndi-name>
+		</entity>
+	</enterprise-beans>
+</jboss>
