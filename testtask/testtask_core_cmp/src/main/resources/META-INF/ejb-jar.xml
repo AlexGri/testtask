@@ -9,9 +9,9 @@
 		<session>
 			<display-name>EmployeeControllerBean</display-name>
 			<ejb-name>EmployeeControllerBean</ejb-name>
-			<home>org.nc.core.business.EmployeeControllerHome</home>
-			<remote>org.nc.core.business.EmployeeController</remote>
-			<ejb-class>org.nc.core.business.EmployeeControllerBean</ejb-class>
+			<home>org.nc.core.redistributable.remote.EmployeeControllerHome</home>
+			<remote>org.nc.core.redistributable.remote.EmployeeController</remote>
+			<ejb-class>org.nc.core.session.EmployeeControllerBean</ejb-class>
 			<session-type>Stateless</session-type>
 			<transaction-type>Bean</transaction-type>
 			<ejb-local-ref>

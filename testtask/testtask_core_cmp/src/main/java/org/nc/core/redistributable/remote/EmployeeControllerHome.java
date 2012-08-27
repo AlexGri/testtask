@@ -1,4 +1,4 @@
-package org.nc.core.business;
+package org.nc.core.redistributable.remote;
 
 import java.rmi.RemoteException;
 

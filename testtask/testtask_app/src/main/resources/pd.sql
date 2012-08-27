@@ -21,13 +21,16 @@ USE `pd`;
 --
 -- Table structure for table `position`
 --
+ALTER TABLE `employee` DISABLE KEYS ;
+ALTER TABLE `position` DISABLE KEYS ;
 
-DROP TABLE IF EXISTS `position`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+DROP TABLE IF EXISTS `position`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+commit;
 CREATE TABLE `position` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `position_name` varchar(45) NOT NULL,

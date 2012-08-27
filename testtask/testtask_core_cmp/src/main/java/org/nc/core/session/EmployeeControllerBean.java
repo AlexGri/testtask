@@ -1,13 +1,8 @@
-package org.nc.core.business;
+package org.nc.core.session;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.TreeSet;
 
 import javax.ejb.CreateException;
 import javax.ejb.FinderException;
@@ -22,17 +17,18 @@ import org.nc.core.entity.Employee;
 import org.nc.core.entity.EmployeeHome;
 import org.nc.core.entity.Position;
 import org.nc.core.entity.PositionHome;
+import org.nc.core.redistributable.javabean.EmployeePojo;
+import org.nc.core.redistributable.javabean.PositionPojo;
 import org.nc.core.utils.CommonUtils;
 
 public class EmployeeControllerBean implements SessionBean {
 	private static final long serialVersionUID = 1L;
 	
-	private DataSource dataSource;
 	private SessionContext sessionContext;
 	private PositionHome positionHome;
 	private EmployeeHome employeeHome;
 	
-	public void createPosition(String name) {
+	/*public void createPosition(String name) {
 		try {
 			positionHome.create(name);
 		} catch (CreateException e) {
@@ -47,14 +43,14 @@ public class EmployeeControllerBean implements SessionBean {
 		} catch (FinderException e) {
 			CommonUtils.error("error while updating position", e);
 		}
-	}
+	}*/
 	
-	public Collection<String> getEmployeeList() {
+	public Collection<EmployeePojo> getEmployeeList() {
 		try {
 			Collection<Employee> employees = employeeHome.findAll();
-			Collection<String> result = new ArrayList<String>(employees.size());
+			Collection<EmployeePojo> result = new ArrayList<EmployeePojo>(employees.size());
 			for (Employee employee : employees) {
-				result.add(employee.stringValue());
+				result.add(CommonUtils.createEmployeePojo(employee));
 			}
 			return result;
 		} catch (FinderException e) {
@@ -64,12 +60,12 @@ public class EmployeeControllerBean implements SessionBean {
 		return Collections.emptyList();
 	}
 	
-	public Collection<String> getPositionList() {
+	public Collection<PositionPojo> getPositionList() {
 		try {
 			Collection<Position> positions = positionHome.findAll();
-			Collection<String> result = new ArrayList<String>(positions.size());
+			Collection<PositionPojo> result = new ArrayList<PositionPojo>(positions.size());
 			for (Position position : positions)
-				result.add(position.stringValue());
+				result.add(CommonUtils.createPositionPojo(position));
 			return result;
 		} catch (FinderException e) {
 			CommonUtils.error("error occured during getting position list", e);
@@ -78,19 +74,28 @@ public class EmployeeControllerBean implements SessionBean {
 		return Collections.emptyList();
 	}
 	
-	public Collection<String> findAllOccurences(String value) {
+	public Collection<EmployeePojo> findAllOccurences(String value) {
 		String searchValue = StringUtils.isBlank(value) ? "%" : "%"+value.trim() +"%";
 		try {
 			Collection<Employee> employees = employeeHome.findByPartOfNameOrPosition(searchValue);
-			Collection<String> result = new ArrayList<String>(employees.size());
+			Collection<EmployeePojo> result = new ArrayList<EmployeePojo>(employees.size());
 			for (Employee employee : employees) {
-				result.add(employee.stringValue());
+				result.add(CommonUtils.createEmployeePojo(employee));
 			}
 			return result;
 		} catch (FinderException e1) {
 			CommonUtils.error("error occured during searching", e1);
 		}
 		return Collections.emptyList();
+	}
+	
+	public EmployeePojo getEmployee(Long id) {
+		try {
+			return CommonUtils.createEmployeePojo(employeeHome.findByPrimaryKey(id));
+		} catch (FinderException e) {
+			CommonUtils.error("error occured during searching", e);
+		}
+		return null;
 	}
 
 	@Override
@@ -101,14 +106,13 @@ public class EmployeeControllerBean implements SessionBean {
 
 	@Override
 	public void ejbRemove() {
-		this.dataSource = null;
 		this.positionHome = null;
+		this.employeeHome = null;
 	}
 	
 	public void ejbCreate() throws CreateException {
 		try {
 	        InitialContext ic = new InitialContext();
-	        dataSource = (DataSource)ic.lookup("java:comp/env/jdbc/PersonnelDepartmentDS");
 	        positionHome = (PositionHome)ic.lookup("java:comp/env/ejb/Position");
 	        employeeHome = (EmployeeHome)ic.lookup("java:comp/env/ejb/Employee");
         }

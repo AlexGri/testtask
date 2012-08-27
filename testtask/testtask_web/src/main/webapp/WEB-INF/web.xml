@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>testtask_web</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app id="WebApp_ID" version="2.5"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>testtask_web</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<display-name>employeeList</display-name>
+		<servlet-name>employeeList</servlet-name>
+		<jsp-file>/EmployeeList.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<display-name>employeeView</display-name>
+		<servlet-name>employeeView</servlet-name>
+		<jsp-file>/EmployeeView.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<display-name>employeeEdit</display-name>
+		<servlet-name>employeeEdit</servlet-name>
+		<jsp-file>/EmployeeEdit.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>employeeList</servlet-name>
+		<url-pattern>/employee/employeeList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>employeeView</servlet-name>
+		<url-pattern>/employee/employeeView</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>employeeEdit</servlet-name>
+		<url-pattern>/employee/employeeEdit</url-pattern>
+	</servlet-mapping>
+
+	<ejb-ref>
+		<ejb-ref-name>web/EmployeeController</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<home>org.nc.core.redistributable.remote.EmployeeControllerHome</home>
+		<remote>org.nc.core.redistributable.remote.EmployeeController</remote>
+	</ejb-ref>
 </web-app>

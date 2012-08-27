@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 import javax.ejb.EJBException;
 
+import org.nc.core.entity.Employee;
+import org.nc.core.entity.Position;
+import org.nc.core.redistributable.javabean.EmployeePojo;
+import org.nc.core.redistributable.javabean.PositionPojo;
+
 public class CommonUtils {
 	private CommonUtils() {
 		throw new RuntimeException("CommonUtils should never be initialized");
@@ -37,5 +42,21 @@ public class CommonUtils {
 		String s = msg + "\n" + ex;
 		System.out.println(s);
 		throw new EJBException(s,ex);
+	}
+	
+	public static EmployeePojo createEmployeePojo(Employee employee) {
+		if (employee == null)
+			return null;
+		else
+			return new EmployeePojo(employee.getId(), employee.getFirstname(), 
+					employee.getLastname(), employee.getMiddlename(), employee.getPhones(),
+					employee.getSalary(), createPositionPojo(employee.getPosition()));
+	}
+	
+	public static PositionPojo createPositionPojo(Position position) {
+		if (position == null)
+			return null;
+		else
+			return new PositionPojo(position.getId(), position.getPositionName());
 	}
 }

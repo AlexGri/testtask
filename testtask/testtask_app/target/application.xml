@@ -3,11 +3,11 @@
   <display-name>testtask_app</display-name>
   <module>
     <web>
-      <web-uri>classes</web-uri>
+      <web-uri>testtask_web.war</web-uri>
       <context-root>/testtask_web</context-root>
     </web>
   </module>
   <module>
-    <ejb>classes</ejb>
+    <ejb>testtask_core_cmp.jar</ejb>
   </module>
 </application>
