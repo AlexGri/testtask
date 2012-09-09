@@ -1,49 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.5"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	<display-name>testtask_web</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-	<servlet>
-		<display-name>employeeList</display-name>
-		<servlet-name>employeeList</servlet-name>
-		<jsp-file>/EmployeeList.jsp</jsp-file>
-	</servlet>
-	<servlet>
-		<display-name>employeeView</display-name>
-		<servlet-name>employeeView</servlet-name>
-		<jsp-file>/EmployeeView.jsp</jsp-file>
-	</servlet>
-	<servlet>
-		<display-name>employeeEdit</display-name>
-		<servlet-name>employeeEdit</servlet-name>
-		<jsp-file>/EmployeeEdit.jsp</jsp-file>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>employeeList</servlet-name>
-		<url-pattern>/employee/employeeList</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>employeeView</servlet-name>
-		<url-pattern>/employee/employeeView</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>employeeEdit</servlet-name>
-		<url-pattern>/employee/employeeEdit</url-pattern>
-	</servlet-mapping>
-
-	<ejb-ref>
-		<ejb-ref-name>web/EmployeeController</ejb-ref-name>
-		<ejb-ref-type>Session</ejb-ref-type>
-		<home>org.nc.core.redistributable.remote.EmployeeControllerHome</home>
-		<remote>org.nc.core.redistributable.remote.EmployeeController</remote>
-	</ejb-ref>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>testtask_web</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <display-name>employeeList</display-name>
+    <servlet-name>employeeList</servlet-name>
+    <jsp-file>/EmployeeList.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <display-name>employeeView</display-name>
+    <servlet-name>employeeView</servlet-name>
+    <jsp-file>/EmployeeView.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <display-name>employeeEdit</display-name>
+    <servlet-name>employeeEdit</servlet-name>
+    <jsp-file>/EmployeeEdit.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <display-name>positionList</display-name>
+    <servlet-name>positionList</servlet-name>
+    <jsp-file>/PositionList.jsp</jsp-file>
+  </servlet>
+   <servlet>
+    <description></description>
+    <display-name>EmployeeSave</display-name>
+    <servlet-name>EmployeeSave</servlet-name>
+    <servlet-class>org.nc.web.EmployeeSave</servlet-class>
+  </servlet>
+   <servlet>
+    <description></description>
+    <display-name>EmployeeDelete</display-name>
+    <servlet-name>EmployeeDelete</servlet-name>
+    <servlet-class>org.nc.web.EmployeeDelete</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>employeeList</servlet-name>
+    <url-pattern>/employee/employeeList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>employeeView</servlet-name>
+    <url-pattern>/employee/employeeView</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>employeeEdit</servlet-name>
+    <url-pattern>/employee/employeeEdit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>positionList</servlet-name>
+    <url-pattern>/employee/positionList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeSave</servlet-name>
+    <url-pattern>/employee/employeeSave</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeDelete</servlet-name>
+    <url-pattern>/employee/employeeDelete</url-pattern>
+  </servlet-mapping>
+  
+  
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>org.nc.web.EncodingFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>EmployeeEditParameterFilter</filter-name>
+    <filter-class>org.nc.web.EmployeeEditParameterFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EmployeeEditParameterFilter</filter-name>
+    <url-pattern>/employee/employeeEdit</url-pattern>
+  </filter-mapping>
+  <ejb-ref>
+    <ejb-ref-name>web/EmployeeController</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>org.nc.core.redistributable.remote.EmployeeControllerHome</home>
+    <remote>org.nc.core.redistributable.remote.EmployeeController</remote>
+  </ejb-ref>
+ 
+ 
 </web-app>

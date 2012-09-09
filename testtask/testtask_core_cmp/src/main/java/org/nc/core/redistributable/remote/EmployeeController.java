@@ -16,4 +16,15 @@ public interface EmployeeController extends EJBObject {
 	public Collection<EmployeePojo> findAllOccurences(String value) throws RemoteException;
 	
 	public EmployeePojo getEmployee(Long id) throws RemoteException;
+	
+	public PositionPojo getPosition(Long id) throws RemoteException;
+	
+	public void deleteEmployee(Long id) throws RemoteException;
+	
+	public void createEmployee(String firstname, String lastname, 
+			String middlename, String phones, Double salary, Long positionId) throws RemoteException;
+	
+	public void updateEmployee(Long id, String firstname, String lastname, 
+			String middlename, String phones, Double salary, Long positionId) throws RemoteException;
+	
 }

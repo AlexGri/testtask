@@ -14,6 +14,13 @@
 <body>
 	<jsp:useBean id="pd" scope="request"
 		class="org.nc.web.PersonnelDepartmentBean" />
+
+	<div>
+		<form action="" method="post" >
+			<input /> 
+			<input type="submit" value="Find"/>
+		</form>
+	</div>
 	<table>
 		<THEAD>
 			<TR>
@@ -44,8 +51,12 @@
 							<input type="submit" value="view" />
 					</form>
 					<form action="employeeEdit" method="post">
-							<input type="hidden" name="id" value="${employee.id}" /> 
+							<input type="hidden" name="employeeId" value="${employee.id}" /> 
 							<input type="submit" value="edit" />
+					</form>
+					<form action="employeeDelete" method="post">
+							<input type="hidden" name="employeeId" value="${employee.id}"/> 
+							<input type="submit" value="delete"/>
 					</form>
 				</TD>
 			</TR>

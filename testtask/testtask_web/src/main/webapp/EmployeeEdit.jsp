@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="org.nc.core.redistributable.javabean.PositionPojo"%>
 <%@page import="org.nc.core.redistributable.javabean.EmployeePojo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,9 +14,13 @@
 		class="org.nc.web.PersonnelDepartmentBean" />
 	<jsp:useBean id="employee" scope="request"
 		class="org.nc.core.redistributable.javabean.EmployeePojo" />
-	<jsp:scriptlet>employee = pd.getEmployee(request.getParameter("id"));</jsp:scriptlet>
+	<jsp:useBean id="position" scope="request"
+		class="org.nc.core.redistributable.javabean.PositionPojo" />
+	<jsp:scriptlet>employee = (EmployeePojo)request.getAttribute("empl");</jsp:scriptlet>
+	<jsp:scriptlet>position = (PositionPojo)request.getAttribute("pos");</jsp:scriptlet>
 
-<form>
+<form action="saveEmployeePrim" method="post">
+	<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
 		<table>
 			<tbody>
 				<tr>
@@ -38,16 +43,35 @@
 					<td>Salary</td>
 					<td><input name="salary" value="<%= employee.getSalary()%>"/></td>
 				</tr>
-				<tr>
-					<td>Position</td>
-					<td>
-						<%= employee.getPosition().getPositionName()%>
-						<input type="hidden" name="positionId" value="<%= employee.getPosition().getId()%>"/>
-						<input type="submit" value="select"/>
-					</td>
-				</tr>
 			</tbody>
 		</table>
-	</form>
+	<input type="submit" value="save fields"/>
+</form>
+
+<form action="employeeDelete" method="post">
+	<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/> 
+	<input type="submit" value="delete employee"/>
+</form>		
+dependency management:
+<table>
+	<tr>
+		<td>Position</td>
+		<td><%= position.getPositionName()%></td>
+		<td>
+			<form action="positionList" method="post">
+				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
+				<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
+				<input type="submit" value="select position"/>
+			</form>
+		</td>
+		<td>
+			<form action="saveEmployeeEnt" method="post">
+				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
+				<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
+				<input type="submit" value="save position"/>
+			</form>
+		</td>
+	</tr>
+</table>
 </body>
 </html>

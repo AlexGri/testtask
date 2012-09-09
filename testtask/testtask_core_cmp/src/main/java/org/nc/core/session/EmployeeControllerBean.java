@@ -5,12 +5,13 @@ import java.util.Collection;
 import java.util.Collections;
 
 import javax.ejb.CreateException;
+import javax.ejb.EJBException;
 import javax.ejb.FinderException;
+import javax.ejb.RemoveException;
 import javax.ejb.SessionBean;
 import javax.ejb.SessionContext;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 import org.apache.commons.lang.StringUtils;
 import org.nc.core.entity.Employee;
@@ -96,6 +97,72 @@ public class EmployeeControllerBean implements SessionBean {
 			CommonUtils.error("error occured during searching", e);
 		}
 		return null;
+	}
+	
+	public PositionPojo getPosition(Long id) {
+		try {
+			return CommonUtils.createPositionPojo(positionHome.findByPrimaryKey(id));
+		} catch (FinderException e) {
+			CommonUtils.error("error occured during searching", e);
+		}
+		return null;
+	}
+	
+	public void deleteEmployee(Long id) {
+		try {
+			employeeHome.remove(id);
+		} catch (EJBException e) {
+			CommonUtils.error("An error occured during deleting employee = " + id, e);
+		} catch (RemoveException e) {
+			CommonUtils.error("could not delete employee with id = " + id, e);
+		}
+	}
+	
+	public void createEmployee(String firstname, String lastname, 
+			String middlename, String phones, Double salary, Long positionId) {
+		
+		Position position = null;
+		if (positionId != null){
+			try {
+				position = positionHome.findByPrimaryKey(positionId);
+			} catch (FinderException e) {
+				CommonUtils.error("could not find position with id = " + positionId, e);
+			}
+		}
+		
+		try {
+			employeeHome.create(firstname, lastname, middlename, phones, salary, position);
+		} catch (CreateException e) {
+			CommonUtils.error("could not create employee", e);
+		}
+	}
+	
+	public void updateEmployee(Long id, String firstname, String lastname, 
+			String middlename, String phones, Double salary, Long positionId) {
+		Employee employee = null;
+		try {
+			employee = employeeHome.findByPrimaryKey(id);
+		} catch (FinderException e1) {
+			CommonUtils.error("error occured during searching", e1);
+		}
+		
+		employee.setFirstname(firstname);
+		employee.setLastname(lastname);
+		employee.setMiddlename(middlename);
+		employee.setPhones(phones);
+		employee.setSalary(salary);
+		
+		if (employee.getPosition().getId() != positionId) {
+			Position position = null;
+			if (positionId != null){
+				try {
+					position = positionHome.findByPrimaryKey(positionId);
+				} catch (FinderException e) {
+					CommonUtils.error("could not find position with id = " + positionId, e);
+				}
+			}
+			employee.setPosition(position);
+		}
 	}
 
 	@Override

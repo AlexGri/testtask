@@ -13,6 +13,8 @@
           <string>PositionList.jsp</string>
           <string>WEB-INF/jboss-web.xml</string>
           <string>WEB-INF/web.xml</string>
+          <string>WEB-INF/classes/org/nc/web/EmployeeEditParameterFilter.class</string>
+          <string>WEB-INF/classes/org/nc/web/EncodingFilter.class</string>
           <string>WEB-INF/classes/org/nc/web/PersonnelDepartmentBean.class</string>
           <string>WEB-INF/lib/jstl-1.2.jar</string>
           <string>WEB-INF/tld/c-1.1.2.tld</string>
