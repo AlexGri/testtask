@@ -16,8 +16,8 @@
 		class="org.nc.web.PersonnelDepartmentBean" />
 
 	<div>
-		<form action="" method="post" >
-			<input /> 
+		<form action="employeeList" method="post" >
+			<input name="searchValue" /> 
 			<input type="submit" value="Find"/>
 		</form>
 	</div>
@@ -36,7 +36,7 @@
 		</THEAD>
 		<TBODY>
 
-			<c:forEach items="${pd.employeeList}" var="employee">
+			<c:forEach items="${pd.findEmployee(request.getAttribute('searchValue'))}" var="employee">
 			<TR>
 				<TD>${employee.id}</TD>
 				<TD>${employee.firstname}</TD>

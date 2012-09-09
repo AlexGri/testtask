@@ -24,6 +24,10 @@ public class PersonnelDepartmentBean {
 		employeeController = employeeControllerHome.create();
 	}
 	
+	public Collection<EmployeePojo> findEmployee(String value) throws RemoteException {
+		return employeeController.findAllOccurences(value);
+	}
+	
 	public Collection<EmployeePojo> getEmployeeList() throws RemoteException {
 		return employeeController.getEmployeeList();
 	}
