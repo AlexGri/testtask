@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td>Position</td>
-				<td><%=employee.getPosition().getPositionName()%></td>
+				<td><%=employee.getPosition() == null ? "" : employee.getPosition().getPositionName()%></td>
 			</tr>
 		</tbody>
 	</table>

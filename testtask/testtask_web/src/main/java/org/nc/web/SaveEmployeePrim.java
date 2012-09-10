@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Servlet implementation class EmployeeSave
  */
@@ -44,11 +46,13 @@ public class SaveEmployeePrim extends HttpServlet {
 			String lastname = request.getParameter("lastname");
 			String middlename = request.getParameter("middlename");
 			String phones = request.getParameter("phones");
-			Double salary = Double.valueOf(request.getParameter("salary"));
+			String salaryString = request.getParameter("salary");
+			Double salary = StringUtils.isBlank(salaryString) ? null : Double.valueOf(salaryString);
 			
 			Set<String> params = request.getParameterMap().keySet();
 			if (params.contains("employeeId")) {
-				Long employeeId = Long.valueOf(request.getParameter("employeeId"));
+				String employeeString = request.getParameter("employeeId");
+				Long employeeId = Long.valueOf(employeeString);
 				pd.updateEmployee(employeeId, firstname, lastname, middlename, phones, salary);					
 			} else {				
 				Long positionId =  Long.valueOf(request.getParameter("positionId"));
@@ -56,6 +60,7 @@ public class SaveEmployeePrim extends HttpServlet {
 			}
 			requestDispatcher = request.getRequestDispatcher("/employee/employeeView");
 		} catch (Exception e) {
+			e.printStackTrace();
 			requestDispatcher = request.getRequestDispatcher("/error");
 		} finally {
 			requestDispatcher.forward(request, response);
