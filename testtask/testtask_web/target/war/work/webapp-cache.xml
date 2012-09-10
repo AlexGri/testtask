@@ -11,6 +11,7 @@
           <string>EmployeeView.jsp</string>
           <string>WEB-INF/jboss-web.xml</string>
           <string>WEB-INF/web.xml</string>
+          <string>img/delete.gif</string>
           <string>META-INF/MANIFEST.MF</string>
           <string>index.jsp</string>
           <string>PositionList.jsp</string>

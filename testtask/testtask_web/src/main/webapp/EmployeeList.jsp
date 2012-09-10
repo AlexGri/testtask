@@ -20,7 +20,6 @@
 	<table>
 		<thead>
 			<tr>
-				<td>ID</td>
 				<td>Firstname</td>
 				<td>Lastname</td>
 				<td>Middlename</td>
@@ -34,7 +33,6 @@
 
 			<c:forEach items="${employees}" var="employee">
 			<tr>
-				<td>${employee.id}</td>
 				<td>${employee.firstname}</td>
 				<td>${employee.lastname}</td>
 				<td>${employee.middlename}</td>
@@ -56,7 +54,7 @@
 					<div class="inl">
 						<form action="employeeDelete" method="post">
 								<input type="hidden" name="employeeId" value="${employee.id}"/> 
-								<input type="submit" value="delete"/>
+								<input type="image" src="../img/delete.gif" alt="delete employee"/>
 						</form>
 					</div>
 					

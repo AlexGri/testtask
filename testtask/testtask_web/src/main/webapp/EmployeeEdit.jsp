@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.nc.core.redistributable.javabean.PositionPojo"%>
 <%@page import="org.nc.core.redistributable.javabean.EmployeePojo"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -17,6 +18,7 @@
 	<jsp:scriptlet>employee = (EmployeePojo)request.getAttribute("empl");</jsp:scriptlet>
 	<jsp:scriptlet>position = (PositionPojo)request.getAttribute("pos");</jsp:scriptlet>
 <%@ include file="/navigation.jsp" %>
+<div >
 <form action="saveEmployeePrim" method="post">
 	<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
 		<table>
@@ -43,42 +45,50 @@
 				</tr>
 			</tbody>
 		</table>
-	<input type="submit" value="<%= employee.getId() != null ? "save employee" : "create employee" %>"/>
+	
+<div class="inl">
+<input type="submit" value="<%= employee.getId() != null ? "save employee" : "create employee" %>"/>
+</div>
 </form>
+</div>
+<div>
 <c:if test="<%= employee.getId() != null%>">
 	<form action="employeeDelete" method="post">
 		<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/> 
 		<input type="submit" value="delete employee"/>
 	</form>
 </c:if>
-dependency management:
-<table>
+</div>
+<p>Связанные сущности:</p>
+<table border="2">
 	<tr>
 		<td>Position</td>
 		<td><%= position.getPositionName()%></td>
-		<td>
-			<form action="positionList" method="post">
-				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
-				<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
-				<input type="submit" value="select position"/>
-			</form>
-		</td>
-		<td>
+		<!--<td>
 			<form action="saveEmployeeEnt" method="post">
 				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
 				<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
 				<input type="submit" value="save position"/>
 			</form>
 		</td>
+		-->
 		<td>
 			<c:if test="<%= position.getId() != null%>">
 				<form action="saveEmployeeEnt" method="post">
 					<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
-					<input type="submit" value="delete position"/>
+					<!-- <input type="submit" value="delete position"/> -->
+					<input type="image" src="../img/delete.gif" alt="delete employee"/>
 				</form>
 			</c:if>
 		</td>
 	</tr>
 </table>
+<c:if test="<%= employee.getId() != null%>">
+	<form action="positionList" method="post">
+		<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
+		<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
+		<input type="submit" value="choose position"/>
+	</form>
+</c:if>
 </body>
 </html>

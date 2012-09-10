@@ -32,7 +32,7 @@
 						<td>${pos.positionName}</td>
 						<c:if test="<%=selectMode%>">
 							<td>
-								<form action="employeeEdit" method="post">
+								<form action="saveEmployeeEnt" method="post">
 									<input type="hidden" name="positionId" value="${pos.id}"/>
 									<input type="hidden" name="employeeId" value="<%= employeeId%>"/>
 									<input type="submit" value="select" />
@@ -42,6 +42,10 @@
 					</tr>
 				</c:forEach>
 			</tbody>
-		</table>
+	</table>
+	<form action="employeeEdit" method="post">
+		<input type="hidden" name="employeeId" value="<%= employeeId%>"/>
+		<input type="submit" value="cancel" />
+	</form>
 </body>
 </html>
