@@ -15,7 +15,8 @@
 		class="org.nc.web.PersonnelDepartmentBean" />
 	<jsp:scriptlet>String employeeId = request.getParameter("employeeId");</jsp:scriptlet>
 	<jsp:scriptlet>boolean selectMode = employeeId != null && !employeeId.isEmpty();</jsp:scriptlet>
-		<table>
+	<%@ include file="/navigation.jsp" %>
+	<table>
 			<thead>
 				<tr>
 					<th>Position name</th>

@@ -152,7 +152,9 @@ public class EmployeeControllerBean implements SessionBean {
 		employee.setPhones(phones);
 		employee.setSalary(salary);
 		
-		if (employee.getPosition().getId() != positionId) {
+		Position currentPosition = employee.getPosition();
+		
+		if (currentPosition == null || currentPosition.getId() != positionId) {
 			Position position = null;
 			if (positionId != null){
 				try {

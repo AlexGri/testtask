@@ -4,6 +4,9 @@
       <string>currentBuild</string>
       <path-set>
         <pathsSet class="linked-hash-set">
+          <string>navigation.jsp</string>
+          <string>error.jsp</string>
+          <string>head.jsp</string>
           <string>EmployeeList.jsp</string>
           <string>EmployeeView.jsp</string>
           <string>WEB-INF/jboss-web.xml</string>
@@ -11,10 +14,10 @@
           <string>META-INF/MANIFEST.MF</string>
           <string>index.jsp</string>
           <string>PositionList.jsp</string>
-          <string>Header.jsp</string>
           <string>EmployeeEdit.jsp</string>
           <string>WEB-INF/classes/org/nc/web/EncodingFilter.class</string>
-          <string>WEB-INF/classes/org/nc/web/EmployeeSave.class</string>
+          <string>WEB-INF/classes/org/nc/web/SaveEmployeeEnt.class</string>
+          <string>WEB-INF/classes/org/nc/web/SaveEmployeePrim.class</string>
           <string>WEB-INF/classes/org/nc/web/EmployeeDelete.class</string>
           <string>WEB-INF/classes/org/nc/web/EmployeeEditParameterFilter.class</string>
           <string>WEB-INF/classes/org/nc/web/PersonnelDepartmentBean.class</string>

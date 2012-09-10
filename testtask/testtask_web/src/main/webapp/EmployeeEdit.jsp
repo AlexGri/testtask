@@ -5,10 +5,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
+<%@ include file="/head.jsp" %>
 <body>
 	<jsp:useBean id="pd" scope="request"
 		class="org.nc.web.PersonnelDepartmentBean" />
@@ -18,7 +15,7 @@
 		class="org.nc.core.redistributable.javabean.PositionPojo" />
 	<jsp:scriptlet>employee = (EmployeePojo)request.getAttribute("empl");</jsp:scriptlet>
 	<jsp:scriptlet>position = (PositionPojo)request.getAttribute("pos");</jsp:scriptlet>
-
+<%@ include file="/navigation.jsp" %>
 <form action="saveEmployeePrim" method="post">
 	<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
 		<table>
@@ -69,6 +66,12 @@ dependency management:
 				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
 				<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
 				<input type="submit" value="save position"/>
+			</form>
+		</td>
+		<td>
+			<form action="saveEmployeeEnt" method="post">
+				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
+				<input type="submit" value="delete position"/>
 			</form>
 		</td>
 	</tr>

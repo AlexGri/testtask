@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
-	<jsp:directive.page contentType="text/html; charset=UTF-8"
-		pageEncoding="UTF-8" session="false" />
-	<jsp:output doctype-root-element="html"
-		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
-		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-		omit-xml-declaration="true" />
-	<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>PD</title>
-</head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ include file="/head.jsp" %>
 <body>
+
+<%@ include file="/navigation.jsp" %>
 	<!--<jsp:useBean id="pd" scope="request"
 		class="org.nc.web.PersonnelDepartmentBean" />
 
@@ -22,30 +18,30 @@
 		</form>
 	</div>
 	<table>
-		<THEAD>
-			<TR>
-				<TD>ID</TD>
-				<TD>Firstname</TD>
-				<TD>Lastname</TD>
-				<TD>Middlename</TD>
-				<TD>Phones</TD>
-				<TD>Salary</TD>
-				<TD>Position</TD>
-				<TD>Action</TD>
-			</TR>
-		</THEAD>
-		<TBODY>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Firstname</td>
+				<td>Lastname</td>
+				<td>Middlename</td>
+				<td>Phones</td>
+				<td>Salary</td>
+				<td>Position</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+		<tbody>
 
 			<c:forEach items="${employees}" var="employee">
-			<TR>
-				<TD>${employee.id}</TD>
-				<TD>${employee.firstname}</TD>
-				<TD>${employee.lastname}</TD>
-				<TD>${employee.middlename}</TD>
-				<TD>${employee.phones}</TD>
-				<TD>${employee.salary}</TD>
-				<TD>${employee.position.positionName}</TD>
-				<TD>
+			<tr>
+				<td>${employee.id}</td>
+				<td>${employee.firstname}</td>
+				<td>${employee.lastname}</td>
+				<td>${employee.middlename}</td>
+				<td>${employee.phones}</td>
+				<td>${employee.salary}</td>
+				<td>${employee.position.positionName}</td>
+				<td>
 					<form action="employeeView" method="post">
 							<input type="hidden" name="id" value="${employee.id}" /> 
 							<input type="submit" value="view" />
@@ -58,13 +54,12 @@
 							<input type="hidden" name="employeeId" value="${employee.id}"/> 
 							<input type="submit" value="delete"/>
 					</form>
-				</TD>
-			</TR>
+				</td>
+			</tr>
 			</c:forEach>
 			
-		</TBODY>
+		</tbody>
 	</table>
 
 </body>
 	</html>
-</jsp:root>

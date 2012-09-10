@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class EmployeeSave
  */
-public class EmployeeSave extends HttpServlet {
+public class SaveEmployeePrim extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
+		this.doPost(request, response);
 	}
 
 	/**
@@ -49,16 +49,12 @@ public class EmployeeSave extends HttpServlet {
 			Set<String> params = request.getParameterMap().keySet();
 			if (params.contains("employeeId")) {
 				Long employeeId = Long.valueOf(request.getParameter("employeeId"));
-				if (params.contains("positionId")) {
-					pd.updateEmployeePosition(employeeId, Long.valueOf(request.getParameter("positionId")));
-				} else {
-					pd.updateEmployee(employeeId, firstname, lastname, middlename, phones, salary);
-				}					
+				pd.updateEmployee(employeeId, firstname, lastname, middlename, phones, salary);					
 			} else {				
 				Long positionId =  Long.valueOf(request.getParameter("positionId"));
 				pd.createEmployee(firstname, lastname, middlename, phones, salary, positionId);
 			}
-			requestDispatcher = request.getRequestDispatcher("/employeeEdit");
+			requestDispatcher = request.getRequestDispatcher("/employee/employeeEdit");
 		} catch (Exception e) {
 			requestDispatcher = request.getRequestDispatcher("/error");
 		} finally {
