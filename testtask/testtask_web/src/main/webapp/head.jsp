@@ -3,5 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Personnel department</title>
+<style type="text/css">
+	.inl {
+		float : left;
+		display: inline;
+	}
+</style>
 </head>
 </jsp:element>

@@ -54,7 +54,7 @@ public class SaveEmployeePrim extends HttpServlet {
 				Long positionId =  Long.valueOf(request.getParameter("positionId"));
 				pd.createEmployee(firstname, lastname, middlename, phones, salary, positionId);
 			}
-			requestDispatcher = request.getRequestDispatcher("/employee/employeeEdit");
+			requestDispatcher = request.getRequestDispatcher("/employee/employeeView");
 		} catch (Exception e) {
 			requestDispatcher = request.getRequestDispatcher("/error");
 		} finally {

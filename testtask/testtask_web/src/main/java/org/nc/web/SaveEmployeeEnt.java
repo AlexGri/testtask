@@ -49,7 +49,7 @@ public class SaveEmployeeEnt extends HttpServlet {
 				}
 				pd.updateEmployeePosition(employeeId, positionId);
 			}
-			requestDispatcher = request.getRequestDispatcher("/employee/employeeEdit");
+			requestDispatcher = request.getRequestDispatcher("/employee/employeeView");
 		} catch (Exception e) {
 			requestDispatcher = request.getRequestDispatcher("/error");
 		} finally {

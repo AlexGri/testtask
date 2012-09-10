@@ -5,4 +5,5 @@
 		<a href="positionList">Position list</a>
 		<a href="employeeEdit">Create new employee</a>
 	</div>
+	<br></br>
 </jsp:element>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="org.nc.core.redistributable.javabean.PositionPojo"%>
 <%@page import="org.nc.core.redistributable.javabean.EmployeePojo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -42,13 +43,14 @@
 				</tr>
 			</tbody>
 		</table>
-	<input type="submit" value="save fields"/>
+	<input type="submit" value="<%= employee.getId() != null ? "save employee" : "create employee" %>"/>
 </form>
-
-<form action="employeeDelete" method="post">
-	<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/> 
-	<input type="submit" value="delete employee"/>
-</form>		
+<c:if test="<%= employee.getId() != null%>">
+	<form action="employeeDelete" method="post">
+		<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/> 
+		<input type="submit" value="delete employee"/>
+	</form>
+</c:if>
 dependency management:
 <table>
 	<tr>
@@ -69,10 +71,12 @@ dependency management:
 			</form>
 		</td>
 		<td>
-			<form action="saveEmployeeEnt" method="post">
-				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
-				<input type="submit" value="delete position"/>
-			</form>
+			<c:if test="<%= position.getId() != null%>">
+				<form action="saveEmployeeEnt" method="post">
+					<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
+					<input type="submit" value="delete position"/>
+				</form>
+			</c:if>
 		</td>
 	</tr>
 </table>

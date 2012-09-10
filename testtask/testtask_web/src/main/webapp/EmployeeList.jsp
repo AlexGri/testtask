@@ -42,18 +42,24 @@
 				<td>${employee.salary}</td>
 				<td>${employee.position.positionName}</td>
 				<td>
-					<form action="employeeView" method="post">
+					<!--<form action="employeeView" method="post">
 							<input type="hidden" name="id" value="${employee.id}" /> 
 							<input type="submit" value="view" />
 					</form>
-					<form action="employeeEdit" method="post">
-							<input type="hidden" name="employeeId" value="${employee.id}" /> 
-							<input type="submit" value="edit" />
-					</form>
-					<form action="employeeDelete" method="post">
-							<input type="hidden" name="employeeId" value="${employee.id}"/> 
-							<input type="submit" value="delete"/>
-					</form>
+					-->
+					<div class="inl">
+						<form action="employeeEdit" method="post">
+								<input type="hidden" name="employeeId" value="${employee.id}" /> 
+								<input type="submit" value="edit" />
+						</form>
+					</div>
+					<div class="inl">
+						<form action="employeeDelete" method="post">
+								<input type="hidden" name="employeeId" value="${employee.id}"/> 
+								<input type="submit" value="delete"/>
+						</form>
+					</div>
+					
 				</td>
 			</tr>
 			</c:forEach>
