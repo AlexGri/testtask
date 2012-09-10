@@ -12,10 +12,10 @@
 <title>PD</title>
 </head>
 <body>
-	<jsp:useBean id="pd" scope="request"
+	<!--<jsp:useBean id="pd" scope="request"
 		class="org.nc.web.PersonnelDepartmentBean" />
 
-	<div>
+	--><div>
 		<form action="employeeList" method="post" >
 			<input name="searchValue" /> 
 			<input type="submit" value="Find"/>
@@ -36,7 +36,7 @@
 		</THEAD>
 		<TBODY>
 
-			<c:forEach items="${pd.findEmployee(request.getAttribute('searchValue'))}" var="employee">
+			<c:forEach items="${employees}" var="employee">
 			<TR>
 				<TD>${employee.id}</TD>
 				<TD>${employee.firstname}</TD>

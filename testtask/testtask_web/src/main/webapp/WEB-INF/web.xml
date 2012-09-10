@@ -76,6 +76,11 @@
     <filter-name>EmployeeEditParameterFilter</filter-name>
     <filter-class>org.nc.web.EmployeeEditParameterFilter</filter-class>
   </filter>
+  <filter>
+  	<filter-name>EmployeeListSearchFilter</filter-name>
+  	<filter-class>org.nc.web.EmployeeListSearchFilter</filter-class>
+  </filter>
+  
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
@@ -84,6 +89,11 @@
     <filter-name>EmployeeEditParameterFilter</filter-name>
     <url-pattern>/employee/employeeEdit</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>EmployeeListSearchFilter</filter-name>
+    <url-pattern>/employee/employeeList</url-pattern>
+  </filter-mapping>
+  
   <ejb-ref>
     <ejb-ref-name>web/EmployeeController</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>

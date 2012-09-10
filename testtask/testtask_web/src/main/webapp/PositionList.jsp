@@ -14,7 +14,7 @@
 	<jsp:useBean id="pd" scope="request"
 		class="org.nc.web.PersonnelDepartmentBean" />
 	<jsp:scriptlet>String employeeId = request.getParameter("employeeId");</jsp:scriptlet>
-	<jsp:scriptlet>boolean selectMode = employeeId == null || employeeId.isEmpty();</jsp:scriptlet>
+	<jsp:scriptlet>boolean selectMode = employeeId != null && !employeeId.isEmpty();</jsp:scriptlet>
 		<table>
 			<thead>
 				<tr>

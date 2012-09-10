@@ -38,7 +38,7 @@
 				<artifactId>jboss-maven-plugin</artifactId>
 				<version>1.5.0</version>
 				<configuration>
-					<jbossHome>K:/jboss-4.2.3work.GA</jbossHome>
+					<jbossHome>/home/alexander/jboss</jbossHome>
 					<serverName>default</serverName>
 					<fileName>target/testtask_app.ear</fileName>
 				</configuration>
