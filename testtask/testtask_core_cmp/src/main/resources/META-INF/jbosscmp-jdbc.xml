@@ -6,19 +6,28 @@
 	<defaults>
 		<datasource>java:PD-DS</datasource>
 		<datasource-mapping>mySQL</datasource-mapping>
+		
 	</defaults>
 	<enterprise-beans>
 		<entity>
 			<ejb-name>PositionBean</ejb-name>
-			<table-name>position</table-name>
+			<table-name>position</table-name>			
 			<cmp-field>
 				<field-name>positionName</field-name>
 				<column-name>position_name</column-name>
 			</cmp-field>
+			<entity-command name="get-generated-keys"></entity-command>
 		</entity>
 		<entity>
 			<ejb-name>EmployeeBean</ejb-name>
 			<table-name>employee</table-name>
+			<cmp-field>
+				<field-name>id</field-name>
+				<column-name>id</column-name>
+				<auto-increment/>
+			</cmp-field>
+			<entity-command name="get-generated-keys"></entity-command>
+			
 		</entity>
 	</enterprise-beans>
 </jbosscmp-jdbc>

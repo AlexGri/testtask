@@ -10,7 +10,7 @@ public interface EmployeeHome extends EJBLocalHome {
 	Employee create(String firstName, String lastName) throws CreateException;
 	
 	Employee create(String firstname, String lastname, 
-			String middlename, String phones, Double salary, Position position) throws CreateException;
+			String middlename, String phones, Double salary/*, Position position*/) throws CreateException;
 
 	Employee findByPrimaryKey(Long id) throws FinderException;
 	

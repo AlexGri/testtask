@@ -40,6 +40,10 @@ public class PersonnelDepartmentBean {
 		return employeeController.getEmployee(convertId(id));
 	}
 	
+	public EmployeePojo getEmployee(Long id) throws RemoteException {
+		return employeeController.getEmployee(id);
+	}
+	
 	public PositionPojo getPosition(String id) throws RemoteException {
 		return employeeController.getPosition(convertId(id));
 	}
@@ -64,7 +68,8 @@ public class PersonnelDepartmentBean {
 	public void updateEmployee(Long id, String firstname, String lastname, 
 			String middlename, String phones, Double salary) throws RemoteException {
 		EmployeePojo employeePojo = employeeController.getEmployee(id);
-		employeeController.updateEmployee(id, firstname, lastname, middlename, phones, salary, employeePojo.getPosition().getId());
+		Long positionId = employeePojo.getPosition() == null ? null : employeePojo.getPosition().getId();
+		employeeController.updateEmployee(id, firstname, lastname, middlename, phones, salary, positionId);
 	}
 	
 	public void updateEmployeePosition(Long id, Long positionId) throws RemoteException {
@@ -77,8 +82,8 @@ public class PersonnelDepartmentBean {
 		employeeController.updateEmployee(id, firstname, lastname, middlename, phones, salary, positionId);
 	}
 	
-	public void createEmployee(String firstname, String lastname, 
+	public Long createEmployee(String firstname, String lastname, 
 			String middlename, String phones, Double salary, Long positionId) throws RemoteException {
-		employeeController.createEmployee(firstname, lastname, middlename, phones, salary, positionId);
+		return employeeController.createEmployee(firstname, lastname, middlename, phones, salary, positionId);
 	}
 }

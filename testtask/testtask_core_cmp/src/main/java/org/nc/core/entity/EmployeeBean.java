@@ -38,23 +38,25 @@ public abstract class EmployeeBean implements EntityBean {
 	public abstract void setId(Long id);
 	
 	public Long ejbCreate(String firstname, String lastname,
-        String middlename, String phones, Double salary, Position position)
+        String middlename, String phones, Double salary/*, Position position*/)
         throws CreateException {
-		
-        this.setFirstname(firstname);
+		this.setFirstname(firstname);
         this.setLastname(lastname);
-        this.setMiddlename(middlename);
+		this.setMiddlename(middlename);
         this.setPhones(phones);
-        this.setSalary(salary);
-        this.setPosition(position);
+        this.setSalary(salary);        
         return null;
     } 
 	
 	public void ejbPostCreate(String firstname, String lastname,
-	        String middlename, String phones, Double salary, Position position) {}
+	        String middlename, String phones, Double salary/*, Position position*/) {
+		/*this.setPosition(position);*/
+	}
 	
 	public Long ejbCreate(String firstname, String lastname) throws CreateException {
-	       return ejbCreate(firstname, lastname, null, null, null, null);
+		this.setFirstname(firstname);
+        this.setLastname(lastname);
+	    return null;
 	}
 	
 	public void ejbPostCreate(String firstname, String lastname) {}

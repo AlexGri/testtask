@@ -49,14 +49,15 @@ public class SaveEmployeePrim extends HttpServlet {
 			String salaryString = request.getParameter("salary");
 			Double salary = StringUtils.isBlank(salaryString) ? null : Double.valueOf(salaryString);
 			
-			Set<String> params = request.getParameterMap().keySet();
-			if (params.contains("employeeId")) {
-				String employeeString = request.getParameter("employeeId");
-				Long employeeId = Long.valueOf(employeeString);
+			String employeeString = request.getParameter("employeeId");
+			Long employeeId = StringUtils.isBlank(employeeString) ? null : Long.valueOf(employeeString);
+			if (employeeId != null) {
 				pd.updateEmployee(employeeId, firstname, lastname, middlename, phones, salary);					
-			} else {				
-				Long positionId =  Long.valueOf(request.getParameter("positionId"));
-				pd.createEmployee(firstname, lastname, middlename, phones, salary, positionId);
+			} else {
+				String positionString = request.getParameter("positionId");
+				Long positionId =  StringUtils.isBlank(positionString) ? null : Long.valueOf(positionString);
+				Long createdEmployeeId = pd.createEmployee(firstname, lastname, middlename, phones, salary, positionId);
+				request.setAttribute("createdEmployeeId", createdEmployeeId);
 			}
 			requestDispatcher = request.getRequestDispatcher("/employee/employeeView");
 		} catch (Exception e) {

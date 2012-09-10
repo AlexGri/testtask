@@ -21,8 +21,10 @@ public interface EmployeeController extends EJBObject {
 	
 	public void deleteEmployee(Long id) throws RemoteException;
 	
-	public void createEmployee(String firstname, String lastname, 
+	public Long createEmployee(String firstname, String lastname, 
 			String middlename, String phones, Double salary, Long positionId) throws RemoteException;
+	
+	public Long createEmployee(String firstname, String lastname) throws RemoteException;
 	
 	public void updateEmployee(Long id, String firstname, String lastname, 
 			String middlename, String phones, Double salary, Long positionId) throws RemoteException;

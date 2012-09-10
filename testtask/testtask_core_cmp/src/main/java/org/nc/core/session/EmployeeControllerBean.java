@@ -118,23 +118,34 @@ public class EmployeeControllerBean implements SessionBean {
 		}
 	}
 	
-	public void createEmployee(String firstname, String lastname, 
-			String middlename, String phones, Double salary, Long positionId) {
-		
-		Position position = null;
-		if (positionId != null){
-			try {
-				position = positionHome.findByPrimaryKey(positionId);
-			} catch (FinderException e) {
-				CommonUtils.error("could not find position with id = " + positionId, e);
-			}
-		}
-		
+	public Long createEmployee(String firstname, String lastname) {
 		try {
-			employeeHome.create(firstname, lastname, middlename, phones, salary, position);
+		return employeeHome.create(firstname, lastname).getId();
+	} catch (CreateException e) {
+		CommonUtils.error("could not create employee", e);
+	}
+		return null;
+	}
+	
+	public Long createEmployee(String firstname, String lastname, 
+			String middlename, String phones, Double salary, Long positionId) {
+		try {
+			Employee employee = employeeHome.create(firstname, lastname, middlename, phones, salary);
+			Position position = null;
+			if (positionId != null){
+				try {
+					position = positionHome.findByPrimaryKey(positionId);
+				} catch (FinderException e) {
+					CommonUtils.error("could not find position with id = " + positionId, e);
+				}
+			}
+			if (position != null)
+				employee.setPosition(position);
+			return employee.getId();
 		} catch (CreateException e) {
 			CommonUtils.error("could not create employee", e);
 		}
+		return null;
 	}
 	
 	public void updateEmployee(Long id, String firstname, String lastname, 

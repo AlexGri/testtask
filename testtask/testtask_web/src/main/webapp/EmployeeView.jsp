@@ -7,9 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@ include file="/head.jsp" %>
 <body>
-	<jsp:useBean id="pd" scope="request"
-		class="org.nc.web.PersonnelDepartmentBean" />
-	<jsp:scriptlet>EmployeePojo employee = pd.getEmployee(request.getParameter("employeeId"));</jsp:scriptlet>
+	<jsp:scriptlet>EmployeePojo employee = (EmployeePojo)request.getAttribute("employee");</jsp:scriptlet>
 <%@ include file="/navigation.jsp" %>
 	<table>
 		<tbody>

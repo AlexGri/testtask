@@ -20,9 +20,7 @@
 		<%@ include file="/navigation.jsp" %>
 		<div >
 			<form action="saveEmployeePrim" method="post">
-				<c:if test="<%= employee.getId() != null%>">
-					<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
-				</c:if>
+				<input type="hidden" name="employeeId" value="<%= employee.getId() == null ? "" : employee.getId() %>"/>
 				<table>
 					<tbody>
 						<tr>
