@@ -15,9 +15,9 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Position name</th>
+					<th>Наименование должности</th>
 					<c:if test="<%=selectMode%>">
-						<th>Action</th>
+						<th>Доступное действие</th>
 					</c:if>
 				
 				</tr>
@@ -31,7 +31,7 @@
 								<form action="saveEmployeeEnt" method="post">
 									<input type="hidden" name="positionId" value="${pos.id}"/>
 									<input type="hidden" name="employeeId" value="<%= employeeId%>"/>
-									<input type="submit" value="select" />
+									<input type="submit" value="Выбрать" />
 								</form>
 							</td>
 						</c:if>
@@ -42,7 +42,7 @@
 		<c:if test="<%=selectMode%>">
 			<form action="employeeEdit" method="post">
 				<input type="hidden" name="employeeId" value="<%= employeeId%>"/>
-				<input type="submit" value="cancel" />
+				<input type="submit" value="Отменить" />
 			</form>
 		</c:if>
 	</body>

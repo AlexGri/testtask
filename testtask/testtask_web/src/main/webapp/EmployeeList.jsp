@@ -10,26 +10,26 @@
 		<div>
 			<form action="employeeList" method="post" >
 				<input name="searchValue" /> 
-				<input type="submit" value="Find"/>
+				<input type="submit" value="Искать"/>
 			</form>
 		</div>
 		<table>
 			<thead>
 				<tr>
-					<td>Firstname</td>
-					<td>Lastname</td>
-					<td>Middlename</td>
-					<td>Phones</td>
-					<td>Salary</td>
-					<td>Position</td>
-					<td>Action</td>
+					<td>Фамилия</td>
+					<td>Имя</td>					
+					<td>Отчество</td>
+					<td>Телефоны</td>
+					<td>Оклад</td>
+					<td>Должность</td>
+					<td>Доступные действия</td>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${employees}" var="employee">
 					<tr>
-						<td>${employee.firstname}</td>
 						<td>${employee.lastname}</td>
+						<td>${employee.firstname}</td>						
 						<td>${employee.middlename}</td>
 						<td>${employee.phones}</td>
 						<td>${employee.salary}</td>
@@ -38,14 +38,14 @@
 							<div>
 								<form action="employeeEdit" method="post">
 									<input type="hidden" name="employeeId" value="${employee.id}" /> 
-									<input type="submit" value="edit" />
+									<input type="submit" value="Редактировать" />
 								</form>
 							</div>
 						</td>
 						<td>
 							<form action="employeeDelete" method="post">
 								<input type="hidden" name="employeeId" value="${employee.id}"/> 
-								<input type="image" src="../img/delete.gif" alt="delete employee"/>
+								<input type="image" src="../img/delete.gif" alt="Удалить"/>
 							</form>
 						</td>
 					</tr>

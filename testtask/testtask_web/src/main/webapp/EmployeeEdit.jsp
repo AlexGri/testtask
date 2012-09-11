@@ -24,29 +24,29 @@
 				<table>
 					<tbody>
 						<tr>
-							<td>Firstname</td>
-							<td><input name="firstname" value="<%=employee.getFirstname() == null ? "" : employee.getFirstname()%>"/></td>
-						</tr>
-						<tr>
-							<td>Lastname</td>
+							<td>Фамилия</td>
 							<td><input name="lastname" value="<%= employee.getLastname() == null ? "" : employee.getLastname()%>"/></td>
 						</tr>
 						<tr>
-							<td>Middlename</td>
+							<td>Имя</td>
+							<td><input name="firstname" value="<%=employee.getFirstname() == null ? "" : employee.getFirstname()%>"/></td>
+						</tr>
+						<tr>
+							<td>Отчество</td>
 							<td><input name="middlename" value="<%= employee.getMiddlename() == null ? "" : employee.getMiddlename()%>"/></td>
 						</tr>
 						<tr>
-							<td>Phones</td>
+							<td>Телефоны</td>
 							<td><input name="phones" value="<%= employee.getPhones() == null ? "" : employee.getPhones()%>"/></td>
 						</tr>
 						<tr>
-							<td>Salary</td>
+							<td>Оклад</td>
 							<td><input name="salary" value="<%= employee.getSalary() == null ? "" : employee.getSalary()%>"/></td>
 						</tr>
 					</tbody>
 				</table>
 				<div class="inl">
-					<input type="submit" value="<%= employee.getId() != null ? "save employee" : "create employee" %>"/>
+					<input type="submit" value="<%= employee.getId() != null ? "Сохранить" : "Создать" %>"/>
 				</div>
 			</form>
 		</div>
@@ -54,21 +54,21 @@
 		<c:if test="<%= employee.getId() != null%>">
 			<form action="employeeDelete" method="post">
 				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/> 
-				<input type="submit" value="delete employee"/>
+				<input type="submit" value="Удалить"/>
 			</form>
 		</c:if>
 		</div>
 		<br/>
-		<p>Связанные сущности:</p>
+		<p>Связанные таблицы:</p>
 		<table class="brd">
 			<tr>
-				<td>Position : </td>
+				<td>Должность : </td>
 				<td><%= position.getPositionName() == null ? "" : position.getPositionName()%></td>
 				<c:if test="<%= position.getId() != null%>">
 					<td>
 						<form action="saveEmployeeEnt" method="post">
 							<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
-							<input type="image" src="../img/delete.gif" alt="delete employee"/>
+							<input type="image" src="../img/delete.gif" alt="Удалить"/>
 						</form>						
 					</td>
 				</c:if>
@@ -78,7 +78,7 @@
 			<form action="positionList" method="post">
 				<input type="hidden" name="employeeId" value="<%= employee.getId()%>"/>
 				<input type="hidden" name="positionId" value="<%= position.getId()%>"/>
-				<input type="submit" value="choose position"/>
+				<input type="submit" value="Выбрать должность"/>
 			</form>
 		</c:if>
 	</body>

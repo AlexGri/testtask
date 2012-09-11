@@ -8,6 +8,6 @@
         <title>Error page</title>
     </head>
     <body>
-        <h1>An error!</h1>
+        <h1>Какая-то ошибка :)</h1>
     </body>
 </html>
