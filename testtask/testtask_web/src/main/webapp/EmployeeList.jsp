@@ -9,7 +9,7 @@
 		<%@ include file="/navigation.jsp" %>
 		<div>
 			<form action="employeeList" method="post" >
-				<input name="searchValue" /> 
+				<input name="searchValue" value="<%= request.getParameter("searchValue") == null ? "" : request.getParameter("searchValue") %>" /> 
 				<input type="submit" value="Искать"/>
 			</form>
 		</div>
